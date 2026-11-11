@@ -36,8 +36,23 @@ with the CD build every mission ends 10 seconds after it starts.
 The way past it is the official one: Sierra's last patch, 25034, and the free
 release of Tribes 2 built on it (2004), which drop the disc requirement. It is
 not on the CD and has to be downloaded (fan archives such as TribesNext's
-carry the original installer); lifting that `Tribes2.exe` instead is the next
-step ([ROADMAP.md](../ROADMAP.md)).
+carry the original installer); lifting that `Tribes2.exe` is what this repository now does.
+
+## The 25034 build
+
+`tribes2gsi.exe` (539 MB, `depot.tribes2.net/legacy/`, linked by TribesNext
+as the full base game) is a Wise installer, not Inno. innoextract and 7-Zip
+refuse it. Its overlay (from 0x3A00) is a run of raw DEFLATE streams, each
+followed by a CRC32. The first is the installer's script, which lists the
+`%MAINDIR%` paths in order; file N of that list is stream N+8. Walked and
+named without running anything. Its `Tribes2.exe` (PE stamp 1036016517)
+imports `IFC22` instead of `IFC21`, has no `GLON32` reference, and its
+console printer moved to `0x00425D30`.
+
+The card profile's full-screen switch: accepting `ChangeDisplaySettingsA`
+without changing the mode gave a desktop-sized popup with the 800x600 frame
+in a corner. The host now refuses the change, and the engine stays in its
+800x600 window.
 
 ## Lifting
 

@@ -67,9 +67,9 @@ void recomp_not_lifted(uint32_t va) {
 
 /* --conlog (a -DT2_TRACE build): the engine's console echoed to stdout.
  * Every Con::printf/warnf/errorf (and the script's echo) goes through
- * Con::_printf(level, type, fmt, va_list) at 0x004218D0, cdecl. The guest's
+ * Con::_printf(level, type, fmt, va_list) at 0x00425D30, cdecl. The guest's
  * va_list is 32-bit stack slots, the same layout as this x86 host's. */
-#define CON_PRINTF 0x004218D0u
+#define CON_PRINTF 0x00425D30u
 static void conlog(uint32_t va) {
     if (va != CON_PRINTF) return;
     char buf[1024];
@@ -212,13 +212,13 @@ static BOOL WINAPI host_wglSwapBuffers(HDC dc) {
 }
 
 /* The card profile (GeForce.cs) turns full screen on whatever -w said. The
- * mode change is accepted and not made: "full screen" is then an 800x600
- * popup window on the desktop as it is, which a private desktop
- * (--headless) can also show. --fullscreen makes the change for real. */
+ * mode change is refused, and the engine falls back to an 800x600 window
+ * (accepting it without changing the mode gave a desktop-sized popup with
+ * the 800x600 picture in one corner). --fullscreen makes the change. */
 static int g_real_fullscreen;
 static LONG WINAPI host_ChangeDisplaySettingsA(DEVMODEA* dm, DWORD flags) {
     if (g_real_fullscreen) return ChangeDisplaySettingsA(dm, flags);
-    return DISP_CHANGE_SUCCESSFUL;
+    return DISP_CHANGE_FAILED;
 }
 
 

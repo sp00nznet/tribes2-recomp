@@ -21,3 +21,8 @@ All notable changes to this project are documented here. The format follows
 - The front end answers posted clicks: licence, CD check (a mounted image),
   warrior setup, the training menu; Training 1 loads and the client enters
   it, until the CD build's SecuROM check quits the game 10 seconds later.
+- Lifted build is now 25034 (Sierra's free release, unpacked from its Wise
+  installer): no disc check. Training 1 runs in game: the drop, the HUD
+  tutorial, movement from posted keys. Host: the console hook follows the
+  new `Con::_printf` (0x00425D30); a refused mode change keeps the game in
+  an 800x600 window.

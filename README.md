@@ -1,6 +1,6 @@
 # Tribes 2: Static Recompilation
 
-![Training 1 loading, drawn by the recompiled game through OpenGL](docs/screenshots/loading-training1.png)
+![Training 1, in the mission: the recompiled game drawing through OpenGL](docs/screenshots/training1-ingame.png)
 
 ## What it is
 
@@ -17,17 +17,17 @@ following its house style (layout, CLI, headless mode). The host is the
 supply your own copy; the lifted C is generated on your machine into the
 gitignored `src/recomp/gen/`.
 
-## Status: v0.1.0-dev, early. The front end runs and answers input; Training 1 loads, then the CD build's SecuROM check quits the game.
+## Status: v0.1.0-dev, early. IN GAME: Training 1 runs, the player moves, the HUD and its tutorial work.
 
 | Stage | State |
 |---|---|
-| Version recompiled | US retail CD `Tribes2.exe` (March 2001, CodeWarrior build). No StarForce or other driver. Offline play checks for the disc by volume label (`T2 INSTALL`, mount your image), and a SecuROM 4 helper checks it again at mission start |
-| Lift | 1 module, 24,881 functions, 0 errors, 0 unimplemented instructions; pcrecomp `disasm32.py` + `drive32`, seeds from relocated code pointers, no IDA |
-| Host (`build\tribes2.exe`, 32-bit, `native32`) | 289 imports bound, 0 unresolved; Miles (`mss32`), Immersion (`IFC21`) and `opengl32` load natively |
+| Version recompiled | `Tribes2.exe` 25034 (October 2002), from Sierra's full installer `tribes2gsi.exe` (the 2004 free release; a Wise installer, unpacked without running it). No disc check. The 2001 CD build also lifts, but its SecuROM 4 helper ends every mission after 10 s ([docs/bringup.md](docs/bringup.md)) |
+| Lift | 1 module, 26,042 functions, 0 errors, 6 `aam` unimplemented; pcrecomp `disasm32.py` + `drive32`, seeds from relocated code pointers, no IDA |
+| Host (`build\tribes2.exe`, 32-bit, `native32`) | 298 imports bound, 0 unresolved; Miles (`mss32`), Immersion (`IFC22`) and `opengl32` load natively |
 | Start-up: volumes (`.vl2`), scripts, prefs, card profiles | works |
 | Renderer | the game's OpenGL device on the real driver, windowed 800x600 |
-| Licence screen, CD check, main menu, warrior setup, training menu | work, with clicks posted to the window |
-| Training 1 | loads (mission, nav graph, datablocks) and the client starts ghosting; then **blocked**: the CD build's SecuROM helper (`glon32.dr7`) is not run, and the engine quits 10 s later. The official 25034 / free release has no disc check ([docs/bringup.md](docs/bringup.md)) |
+| Licence screen, main menu, warrior setup, training menu | work, with clicks posted to the window |
+| Training 1 | **in game**: the bomber drop, the HUD tutorial, walking with posted keys; after a few minutes of the test run the mission ended and returned to the training menu (not yet looked at) |
 | Sound | Miles is the real one; `--headless` runs are muted |
 | Online | the WON/Sierra servers are gone; run offline with `-- -nologin` |
 | Headless (`--headless --shot / --record`) | works: a private desktop, frames read back from the GL back buffer |
@@ -39,13 +39,18 @@ gitignored `src/recomp/gen/`.
 
 | | |
 |---|---|
-| ![Training menu](docs/screenshots/training.png) | ![LAN game, warrior setup](docs/screenshots/main-menu.png) |
+| ![HUD tutorial](docs/screenshots/training1-hud.png) | ![Training menu](docs/screenshots/training.png) |
+
+A run at a glance, one frame every 10 s (menu, loading, the drop, the tutorial, back to the menu):
+
+![Contact sheet of a Training 1 run](docs/screenshots/training1-contact.png)
 
 ## Getting Started
 
-You need **your own copy of Tribes 2**: the `GameData` folder of an install,
-or the one on the CD (`Tribes2\GameData`: `Tribes2.exe`, `base\*.vl2`). Do not
-run the CD's installer for this; copying the folder is enough.
+You need **Tribes 2 25034**: the `GameData` folder of an install of Sierra's
+free release (`tribes2gsi.exe`, 539 MB; TribesNext links it as the base game
+installer, without their client patch). The 2001 CD's `GameData` also lifts,
+but stops 10 s into a mission (SecuROM).
 
 Prerequisites: Windows 10/11, **Python 3.10+** with `pefile` and `capstone`,
 **Visual Studio 2022** (or its Build Tools) with *Desktop development with
@@ -61,12 +66,11 @@ some-folder\
 1. `py -3 -m pip install --user pefile capstone`
 2. `xcopy /e /i X:\Tribes2\GameData game` (or `mklink /J game <your install>`)
 3. `py -3 tools\catalog.py` (about 10 minutes). Expected:
-   `[*] Functions: 24881 ...`
+   `[*] Functions: 26042 ...`
 4. `py -3 run_lift.py` (about 5 minutes), then `build.cmd`. Expected from the
-   lift: `24881 functions in the dispatch table, lift errors 0, unimplemented instructions 0`.
+   lift: `26042 functions in the dispatch table, lift errors 0`.
 5. `build\tribes2.exe`. Expected: `[bind] 0x00400000: ... 0 unresolved`.
-6. Mount the Tribes 2 CD, or its image (Explorer, *Mount*; a `.bin/.cue`
-   rip needs converting to `.iso` first). Offline play checks the drive.
+6. (CD build only) mount the disc or its image: offline play checks the drive.
 7. `build\tribes2.exe --run -- -nologin`. The first run shows the licence and
    asks for a warrior name.
 
@@ -86,7 +90,7 @@ build\tribes2.exe --headless --run --watchdog 300 --shot 60 eula.bmp --click 500
 | `--shot S FILE.bmp` | the frame presented at S seconds (up to 16) |
 | `--record FILE.mp4` | every presented frame to ffmpeg |
 | `--click X,Y@S`, `--key VK@S` | input at S seconds, posted to the game window |
-| `--fullscreen` | let the game change the display mode (by default its full screen is a window of the same size) |
+| `--fullscreen` | let the game change the display mode (by default the mode change is refused and the game runs in a window) |
 | `--watchdog S` | stop after S seconds and say where the game was |
 | `--conlog` | the engine console on stdout (a `-DT2_TRACE=ON` build) |
 | `--game DIR` | the game folder (default `game`) |

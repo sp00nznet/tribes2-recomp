@@ -1,12 +1,12 @@
 # Roadmap
 
 ## Next
-- **Lift the 25034 build.** Training 1 loads and the client enters it, but the
-  CD build's SecuROM check (`glon32.dr7`) ends every mission after 10 seconds
-  ([docs/bringup.md](docs/bringup.md)). Sierra's last patch / 2004 free
-  release (25034) has no disc check: download it, point `game\` at it, and
-  re-run catalog, lift and build (addresses in the host's `--conlog` hook
-  will move).
+- **Why Training 1 ends.** In the test run the mission returned to the
+  training menu a few minutes in (posted W presses only; perhaps the
+  tutorial's own failure, perhaps not). Check with a `--conlog` trace build.
+- **Input for real play**: mouse look (the game reads window messages with
+  DirectInput off), held keys rather than taps (`--key` taps for 150 ms).
+- **The 6 `aam` sites** the lift leaves unimplemented.
 - **Speed.** The generated C is built at `/Od`; the start-up script compile
   takes most of a minute. Try `/O2` (`-DPCRECOMP_GEN_OPT=ON`) once a mission runs.
 - **Setup.cmd and the launcher**, as in the other triage recomps.

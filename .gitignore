@@ -43,3 +43,4 @@ analysis/
 *.bmp
 !docs/**/*.png
 *.lnk
+game-cd/
