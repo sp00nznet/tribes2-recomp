@@ -1,0 +1,45 @@
+# Build output
+build/
+build-*/
+out/
+cmake-build-*/
+*.obj
+*.pdb
+*.ilk
+*.exp
+*.lib
+*.map
+
+# IDE
+.vs/
+.vscode/
+*.user
+
+# Python
+__pycache__/
+*.pyc
+
+# --- Retail game files: NOT redistributed (REPO_RULES section 3) ---
+game/
+*.exe
+*.EXE
+*.dll
+*.DLL
+*.iso
+*.zip
+*.tcf
+*.sam
+*.wad
+
+# Generated from the binary, never committed: the catalog, the lifted C,
+# the private registry file and every other analysis of the game.
+src/recomp/gen/
+work/
+analysis/
+
+# Recordings and logs of runs
+*.mp4
+*.log
+*.bmp
+!docs/**/*.png
+*.lnk
