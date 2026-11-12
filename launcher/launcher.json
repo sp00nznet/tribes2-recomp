@@ -1,0 +1,18 @@
+{
+  "title": "Tribes 2",
+  "repo": "sp00nznet/tribes2-recomp",
+  "accent": "#3a7bd5",
+  "note": {
+    "windows": "The first build takes 20 to 40 minutes and about 3 GB. Python, CMake, Ninja and the Visual Studio Build Tools (about 3 GB) are installed if they are missing. Point it at the GameData folder of Tribes 2 25034 (Sierra's free release, tribes2gsi.exe).",
+    "default": "Windows only for now."
+  },
+  "game": {
+    "name": "Tribes 2 (25034)",
+    "files": ["Tribes2.exe"]
+  },
+  "sources": [{ "repo": "sp00nznet/pcrecomp", "ref": "pcrecomp-tribes2", "dir": "pcrecomp" }],
+  "setup": {
+    "windows": ["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "tools\\setup.ps1", "-Yes", "-Game", "{game}"]
+  },
+  "play": "* (recomp).*"
+}

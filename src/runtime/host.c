@@ -1,11 +1,11 @@
 /*
- * Tribes 2 (retail 2001) - static recompilation host.
+ * Tribes 2 (25034) - static recompilation host.
  *
  * A 32-bit host on pcrecomp's runtime/native32 (the native bridge, callbacks,
  * machine lock) and its shared module loader (modules32.c). The game is one
  * executable, Tribes2.exe (Torque: the TorqueScript VM, the OpenGL renderer),
  * mapped at its own base 0x00400000 and lifted whole; its DLLs (Miles mss32,
- * Immersion IFC21) and opengl32 load natively.
+ * Immersion IFC22) and opengl32 load natively.
  *
  * Linked at /BASE:0x60000000 (CMakeLists.txt) so 0x00400000..0x009F8000 is
  * free. docs/bringup.md has what each option is for.

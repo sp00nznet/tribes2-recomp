@@ -1,5 +1,5 @@
 # =============================================================================
-# Tribes 2 (retail) - static recompilation host (32-bit, MSVC x86)
+# Tribes 2 (25034) - static recompilation host (32-bit, MSVC x86)
 #
 #   py -3 tools/catalog.py && py -3 run_lift.py
 #   build.cmd                # vcvarsall amd64_x86 + CMake + Ninja -> build/tribes2.exe

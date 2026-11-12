@@ -1,8 +1,0 @@
-Tribes 2 recomp
-
-The host follows the Sim Theme Park recomp (simthemepark-recomp)
-and runs on pcrecomp's native32
-runtime and module loader (https://github.com/sp00nznet/pcrecomp). All MIT.
-
-Tribes 2 is (c) 2001 Dynamix / Sierra; the Torque engine is GarageGames/Dynamix.
-No part of the game is included.

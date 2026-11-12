@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 """Lift Tribes2.exe (work/t2.functions.json) to C in src/recomp/gen/.
 
-One module: Sim Theme Park is a single executable (base 0x00400000, no
-relocations), and its DLLs (QMixer, the wea* online modules, usp11,
-dplayerx) are third-party and load natively. The loop is pcrecomp's shared
+One module: Tribes2.exe 25034 (base 0x00400000), lifted whole; its DLLs
+(Miles mss32, Immersion IFC22) and opengl32 load natively. The loop is pcrecomp's shared
 `tools/lift/drive32.py`; this file only names the inputs and writes the
 dispatch table.
 

@@ -1,0 +1,15 @@
+# The installer (recomp-launcher with launcher/launcher.json). A private repo:
+# it runs by hand only (REPO_RULES section 8).
+name: installer
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  installer:
+    uses: sp00nznet/recomp-launcher/.github/workflows/installer.yml@main
+    with:
+      name: Tribes2-Recomp-Installer

@@ -44,3 +44,6 @@ analysis/
 !docs/**/*.png
 *.lnk
 game-cd/
+
+# Setup's shortcut
+* (recomp).cmd

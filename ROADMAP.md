@@ -9,9 +9,10 @@
 - **The 6 `aam` sites** the lift leaves unimplemented.
 - **Speed.** The generated C is built at `/Od`; the start-up script compile
   takes most of a minute. Try `/O2` (`-DPCRECOMP_GEN_OPT=ON`) once a mission runs.
-- **Setup.cmd and the launcher**, as in the other triage recomps.
+- **A first installer release** (the launcher config and workflow exist; nothing is tagged).
+- **Linux**: a Wine path for the Windows build, or the host on pcrecomp's win32hle.
 - **A conformance harness** (REPO_RULES section 9): dry-run bind count, the
-  licence screen from `--shot`.
+  license screen from `--shot`.
 - **A farm build**: `netlab build tribes2-recomp` (recipe added, not run).
 - **pcrecomp-tribes2 into pcrecomp main.**
 

@@ -102,5 +102,5 @@ no MSVC RTTI and `rtti.py` finds nothing.
 
 ## Speed
 
-The generated C at `/Od`: the start-up scripts compile and the licence screen
+The generated C at `/Od`: the start-up scripts compile and the license screen
 comes up in about 25 seconds.
