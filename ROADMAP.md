@@ -14,7 +14,6 @@
 - **A conformance harness** (REPO_RULES section 9): dry-run bind count, the
   license screen from `--shot`.
 - **A farm build**: `netlab build tribes2-recomp` (recipe added, not run).
-- **pcrecomp-tribes2 into pcrecomp main.**
 
 ## Later
 - Online play: the WON servers are gone; community master servers speak a

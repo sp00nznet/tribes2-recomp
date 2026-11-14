@@ -6,6 +6,9 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+### Changed
+- Builds against pcrecomp main; the `pcrecomp-tribes2` branch is merged.
+
 ### Added
 - `Setup.cmd` / `tools/setup.ps1`: tools, pcrecomp on `pcrecomp-tribes2`, the
   25034 `GameData` (checked by PE timestamp), catalog, lift, build and a

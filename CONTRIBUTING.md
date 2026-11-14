@@ -23,7 +23,7 @@ before you commit anyway. Screenshots of the game running are fine.
 
 - A bug in the lifter, the catalog or the native bridge belongs in
   [pcrecomp](https://github.com/sp00nznet/pcrecomp), on a branch with its own
-  PR (this game's toolkit work is on `pcrecomp-tribes2` until it merges).
+  PR.
 - A host-side shim or hook for this game goes in `src/runtime/host.c`, with a
   comment that says what it fixes and why.
 - A wall you got past goes in `docs/bringup.md`: what it looked like, what it

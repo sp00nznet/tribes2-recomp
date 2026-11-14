@@ -10,7 +10,7 @@
     "name": "Tribes 2 (25034)",
     "files": ["Tribes2.exe"]
   },
-  "sources": [{ "repo": "sp00nznet/pcrecomp", "ref": "pcrecomp-tribes2", "dir": "pcrecomp" }],
+  "sources": [{ "repo": "sp00nznet/pcrecomp", "ref": "main", "dir": "pcrecomp" }],
   "setup": {
     "windows": ["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "tools\\setup.ps1", "-Yes", "-Game", "{game}"]
   },

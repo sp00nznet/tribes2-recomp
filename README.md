@@ -7,7 +7,7 @@ Torque engine, its TorqueScript VM and its OpenGL renderer run as lifted C,
 calling the real `opengl32.dll`.
 
 Built on the [pcrecomp](https://github.com/sp00nznet/pcrecomp) toolchain,
-**branch `pcrecomp-tribes2`** (based on `pcrecomp-stp`, not yet in `main`).
+branch `main`.
 The host follows the [Sim Theme Park recomp](https://github.com/sp00nznet/simthemepark-recomp)'s.
 
 ![Training 1, in the mission: the recompiled game drawing through OpenGL](docs/screenshots/training1-ingame.png)
@@ -25,7 +25,7 @@ Windows only for now.
    and unzip it somewhere with 3 GB free.
 2. Double-click **`Setup.cmd`**. It asks before installing anything (Python,
    pefile and capstone, CMake, Ninja, the Visual Studio 2022 Build Tools),
-   fetches pcrecomp's `pcrecomp-tribes2` branch beside this folder, asks for
+   fetches pcrecomp (`main`) beside this folder, asks for
    your `GameData` folder, then catalogs, lifts and builds (20 to 40 minutes,
    once). A rerun skips finished steps; the details go to `setup.log`.
 3. Play with **`Tribes 2 (recomp).cmd`** in that folder. It runs offline

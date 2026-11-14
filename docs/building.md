@@ -5,11 +5,11 @@
 Prerequisites: Windows 10/11, **Python 3.10+** with `pefile` and `capstone`,
 **Visual Studio 2022** (or its Build Tools) with *Desktop development with
 C++*, CMake and Ninja, ffmpeg on `PATH` for `--record` only, and pcrecomp
-cloned **beside** this repository on the `pcrecomp-tribes2` branch:
+cloned **beside** this repository (`main`):
 
 ```
 some-folder\
-  pcrecomp\         <- git clone -b pcrecomp-tribes2 https://github.com/sp00nznet/pcrecomp
+  pcrecomp\         <- git clone https://github.com/sp00nznet/pcrecomp
   tribes2-recomp\   <- this repository
 ```
 

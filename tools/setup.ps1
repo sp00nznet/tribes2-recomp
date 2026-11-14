@@ -2,8 +2,7 @@
 # double-clicking Setup.cmd; docs/building.md is the same thing by hand,
 # command for command.
 #
-# It checks the tools, fetches pcrecomp on the pcrecomp-tribes2 branch (this
-# build needs it; it is not in pcrecomp main yet), copies your Tribes 2 25034
+# It checks the tools, fetches pcrecomp (main), copies your Tribes 2 25034
 # GameData folder into game\, builds the function catalog, lifts it to C,
 # builds build\tribes2.exe and leaves "Tribes 2 (recomp).cmd". Each step is
 # skipped when its output already exists (-Force redoes them). Everything goes
@@ -12,7 +11,7 @@
 param([switch]$Force, [switch]$Yes, [Alias('GameDir')][string]$Game = "")
 
 $ErrorActionPreference = 'Stop'
-$Branch = 'pcrecomp-tribes2'
+$Branch = 'main'
 $Stamp = 1036016517   # Tribes2.exe 25034's PE timestamp: the build the host's addresses are for
 $Root = Split-Path -Parent $PSScriptRoot
 $Toolkit = if ($env:PCRECOMP) { $env:PCRECOMP } else { Join-Path (Split-Path -Parent $Root) 'pcrecomp' }
@@ -80,9 +79,9 @@ if (-not (Test-Path (Join-Path $T 'lift\drive32.py'))) {
   if (-not (Ask "  Download the pcrecomp toolkit ($Branch branch) into $Toolkit (git, about 20 MB)?")) { Fail "pcrecomp is required at $Toolkit." }
   Run "Cloning pcrecomp" @('git', 'clone', '--depth', '1', '-b', $Branch, 'https://github.com/sp00nznet/pcrecomp', $Toolkit)
 }
-# The lifter needs fbld/fbstp (CodeWarrior's strtod), which only pcrecomp-tribes2 has.
+# The lifter needs fbld/fbstp (CodeWarrior's strtod), which an older main lacks.
 if (-not (Select-String -Quiet -SimpleMatch 'fp_bcd_ld' (Join-Path $Toolkit 'runtime\recomp32\recomp_types.h'))) {
-  Fail "pcrecomp at $Toolkit is not on the $Branch branch: git -C `"$Toolkit`" fetch origin $Branch, then git -C `"$Toolkit`" checkout $Branch"
+  Fail "pcrecomp at $Toolkit is older than ${Branch}: git -C `"$Toolkit`" checkout $Branch, then git -C `"$Toolkit`" pull"
 }
 Say "  pcrecomp: $Toolkit"
 
